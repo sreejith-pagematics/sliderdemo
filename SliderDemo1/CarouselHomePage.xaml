@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:control="clr-namespace:NeedHelp.Pages"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="NeedHelp.Pages.CarouselHomePage">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#e6e6e6" StatusBarStyle="DarkContent" />
+    </ContentPage.Behaviors>
+
+    <CarouselView 
+        x:Name="carouselView"
+        Loop="False">
+        <CarouselView.ItemsSource>
+            <x:Array Type="{x:Type ContentView}">
+                <control:HomePage/>
+            </x:Array>
+        </CarouselView.ItemsSource>
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <ContentView Content="{Binding}"/>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+</ContentPage>

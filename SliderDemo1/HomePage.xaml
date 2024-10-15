@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:NeedHelp.Model"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="false"
+    BackgroundColor="White"
+    x:Name="page"
+    x:Class="NeedHelp.Pages.HomePage">
+
+    <StackLayout 
+        Orientation="Vertical">
+        <ScrollView>
+            <StackLayout>
+                <Frame 
+                    BorderColor="#ffffff"
+                    BackgroundColor="#ededed"
+                    Margin="10,10,10,5"
+                    HasShadow="False"
+                    CornerRadius="10"
+                    Padding="5">
+
+                    <StackLayout
+                        Margin="5"
+                        Orientation="Vertical">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="9.5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label 
+                                x:Name="slider_timer_label"
+                                Grid.Column="1"
+                                Text=" "
+                                Margin="0,0,0,5"
+                                Padding="3"
+                                HorizontalOptions="Start" 
+                                HorizontalTextAlignment="Center" 
+                                VerticalOptions="EndAndExpand"
+                                TextColor="#ededed">
+                                <Label.FontSize>
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>12</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>18</OnIdiom.Tablet>
+                                        <OnIdiom.Desktop>12</OnIdiom.Desktop>
+                                    </OnIdiom>
+                                </Label.FontSize>
+                            </Label>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="9*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label 
+                                Margin="5"
+                                HorizontalTextAlignment="End"
+                                Grid.Column="0"
+                                Text="0"
+                                TextColor="Black">
+                                <Label.FontSize>
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>16</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>24</OnIdiom.Tablet>
+                                        <OnIdiom.Desktop>16</OnIdiom.Desktop>
+                                    </OnIdiom>
+                                </Label.FontSize>
+                            </Label>
+
+                            <Slider 
+                                x:Name="watchme_slider"
+                                Grid.Column="1"
+                                BackgroundColor="White"
+                                MinimumTrackColor="#1c98d7"
+                                MaximumTrackColor="#9a9a9a"
+                                ThumbImageSource="ic_thumb_xx.png"
+                                ValueChanged="SliderValueChanged"
+                                InputTransparent="{Binding InputTransparent}"
+                                Maximum="0.166666667"
+                                Minimum="0"     
+                                HorizontalOptions="FillAndExpand">
+                                <Slider.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                        EventName="DragCompleted"
+                                        Command="{Binding Source={x:Reference page}, Path=BindingContext.DragCompletedCommand}"
+                                        CommandParameter="{Binding Source={x:Reference watchme_slider}}" />
+                                </Slider.Behaviors>
+                            </Slider>
+
+                            <!--<Slider 
+                                x:Name="advanced_slider"
+                                Grid.Column="1"
+                                BackgroundColor="White"
+                                MinimumTrackColor="#1c98d7"
+                                MaximumTrackColor="#9a9a9a"
+                                ThumbImageSource="ic_thumb_xx.png"
+                                ValueChanged="SliderValueChanged"
+                                IsVisible="false"
+                                Maximum="0.333333333"
+                                Minimum="0"
+                                HorizontalOptions="FillAndExpand"/>-->
+                        </Grid>
+
+                        <Button
+                            HorizontalOptions="CenterAndExpand"
+                            BackgroundColor="#ffffff"
+                            Margin="0,10,0,0"
+                            CornerRadius="5"
+                            x:Name="cancel_watchme_button"
+                            TextColor="Black"
+                            IsEnabled="False"
+                            TextTransform="None"
+                            Text="Cancel Watch Me">
+                            <Button.WidthRequest>
+                                <OnIdiom x:TypeArguments="x:Double">
+                                    <OnIdiom.Phone>150</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>225</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>150</OnIdiom.Desktop>
+                                </OnIdiom>
+                            </Button.WidthRequest>
+                            <Button.HeightRequest>
+                                <OnIdiom x:TypeArguments="x:Double">
+                                    <OnIdiom.Phone>40</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>60</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>40</OnIdiom.Desktop>
+                                </OnIdiom>
+                            </Button.HeightRequest>
+                            <Button.FontSize>
+                                <OnIdiom x:TypeArguments="x:Double">
+                                    <OnIdiom.Phone>15</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>20</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>15</OnIdiom.Desktop>
+                                </OnIdiom>
+                            </Button.FontSize>
+                        </Button>
+
+                        <Label 
+                            x:Name="watchme_timer_label"
+                            Margin="5,10,5,10"
+                            Text=" "
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="#ededed">
+                            <Label.FontSize>
+                                <OnIdiom x:TypeArguments="x:Double">
+                                    <OnIdiom.Phone>16</OnIdiom.Phone>
+                                    <OnIdiom.Tablet>24</OnIdiom.Tablet>
+                                    <OnIdiom.Desktop>16</OnIdiom.Desktop>
+                                </OnIdiom>
+                            </Label.FontSize>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+
+    </StackLayout>
+</ContentView>                
